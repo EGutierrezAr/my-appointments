@@ -5,10 +5,10 @@
   <div class="card-header border-0">
     <div class="row align-items-center">
       <div class="col">
-        <h3 class="mb-0">Nuevo médico</h3>
+        <h3 class="mb-0">Nuevo paciente</h3>
       </div>
       <div class="col text-right">
-        	<a href="{{ url('doctors')}}" class="btn btn-sm btn-default">
+        	<a href="{{ url('patients')}}" class="btn btn-sm btn-default">
         		Cancelar y volver
     		</a>
       </div>
@@ -25,27 +25,27 @@
       </div>
     @endif
 
-    <form action="{{ url('/doctors') }}" method="post">
+    <form action="{{ url('/patients') }}" method="post">
       @csrf
       <div class="form-group">
-        <label for="name">Nombre del doctor</label>
+        <label for="name">Nombre del paciente</label>
         <input type='text' name='name' class='form-control' value="{{ old ('name')}} " required> 
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type='text' name='email' class='form-control' value="{{ old ('email')}} "> 
+        <input type='text' name='email' class='form-control' value="{{ old ('description')}} "> 
       </div>
       <div class="form-group">
         <label for="cedula">Cédula</label>
-        <input type='text' name='cedula' class='form-control' value="{{ old ('cedula')}} "> 
+        <input type='text' name='cedula' class='form-control' value="{{ old ('description')}} "> 
       </div>
       <div class="form-group">
         <label for="address">Dirección</label>
-        <input type='text' name='address' class='form-control' value="{{ old ('address')}} "> 
+        <input type='text' name='address' class='form-control' value="{{ old ('description')}} "> 
       </div>
       <div class="form-group">
         <label for="phone">Teléfono / móvil</label>
-        <input type='text' name='phone' class='form-control' value="{{ old ('phone')}} "> 
+        <input type='text' name='phone' class='form-control' value="{{ old ('description')}} "> 
       </div>
       <div class="form-group">
         <label for="password">Contraseña</label>

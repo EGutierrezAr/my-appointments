@@ -1,6 +1,13 @@
 <!-- Navigation -->
-<h6 class="navbar-heading text-muted">Gestionar datos</h6>
+<h6 class="navbar-heading text-muted">
+@if (auth()->user()->role == 'admin')
+  Gestionar datos
+@else
+  Menu
+@endif
+</h6>
 <ul class="navbar-nav">
+  @if (auth()->user()->role == 'admin')
   <li class="nav-item">
     <a class="nav-link" href="/home">
       <i class="ni ni-tv-2 text-primary"></i> Dashboard
@@ -21,6 +28,29 @@
       <i class="ni ni-satisfied text-info"></i> Pascientes
     </a>
   </li>
+  @elseif (auth()->user()->role == 'doctor')
+    <li class="nav-item">
+    <a class="nav-link" href="/schedule">
+      <i class="ni ni-calendar-grid-58 text-primary"></i> Gestionar horario
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/specialties">
+      <i class="ni ni-time-alarm text-primary"></i> Mis citas
+    </a>
+  </li>
+  @else  {{-- patient --}}
+  <li class="nav-item">
+    <a class="nav-link" href="/home">
+      <i class="ni ni-laptop text-primary"></i> Reservar cita
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/specialties">
+      <i class="ni ni-time-alarm text-primary"></i> Mis citas
+    </a>
+  </li>
+  @endif
   <li class="nav-item">
     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('formLogout').submit();">
       <i class="ni ni-key-25 "></i> Cerrar sesión
@@ -30,20 +60,22 @@
     </form>
   </li>
 </ul>
-<!-- Divider -->
-<hr class="my-3">
-<!-- Heading -->
-<h6 class="navbar-heading text-muted">Reportes</h6>
-<!-- Navigation -->
-<ul class="navbar-nav mb-md-3">
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-      <i class="ni ni-collection text-yellow"></i> Frecuencia de citas
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-      <i class="ni ni-spaceship text-red"></i> Médicos más activos
-    </a>
-  </li>
-</ul>
+@if (auth()->user()->role == 'admin')
+  {{-- Divider --}}
+  <hr class="my-3">
+  {{-- Heading --}}
+  <h6 class="navbar-heading text-muted">Reportes</h6>
+  {{-- Navigation --}}
+  <ul class="navbar-nav mb-md-3">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="ni ni-collection text-yellow"></i> Frecuencia de citas
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="ni ni-spaceship text-red"></i> Médicos más activos
+      </a>
+    </li>
+  </ul>
+ @endif
