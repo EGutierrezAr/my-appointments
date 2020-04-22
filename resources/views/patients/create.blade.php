@@ -33,19 +33,19 @@
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type='text' name='email' class='form-control' value="{{ old ('description')}} "> 
+        <input type='text' name='email' class='form-control' value="{{ old ('email')}} "> 
       </div>
       <div class="form-group">
         <label for="cedula">Cédula</label>
-        <input type='text' name='cedula' class='form-control' value="{{ old ('description')}} "> 
+        <input type='text' name='cedula' class='form-control' value="{{ old ('cedula')}} "> 
       </div>
       <div class="form-group">
         <label for="address">Dirección</label>
-        <input type='text' name='address' class='form-control' value="{{ old ('description')}} "> 
+        <input type='text' name='address' class='form-control' value="{{ old ('address')}} "> 
       </div>
       <div class="form-group">
         <label for="phone">Teléfono / móvil</label>
-        <input type='text' name='phone' class='form-control' value="{{ old ('description')}} "> 
+        <input type='text' name='phone' class='form-control' value="{{ old ('phone')}} "> 
       </div>
       <div class="form-group">
         <label for="password">Contraseña</label>
