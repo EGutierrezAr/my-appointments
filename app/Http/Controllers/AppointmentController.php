@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specialty;
-use App\appointment;
+use App\Appointment;
 use App\CancelledAppointment;
 use App\Interfaces\ScheduleServiceInterface;
 
