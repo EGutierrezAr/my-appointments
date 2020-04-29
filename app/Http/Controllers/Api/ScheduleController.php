@@ -18,7 +18,8 @@ class ScheduleController extends Controller
             'doctor_id'=> 'required|exists:users,id'
         ];
 
-        $this->validate($request, $rules); 
+        //$this->validate($request, $rules); //Se puede sobre escribir en veriones mas recientes de laravel
+        $request->validate($rules);
  
         $date = $request->input('date');
         $doctorId = $request->input('doctor_id');  
