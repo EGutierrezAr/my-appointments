@@ -84,7 +84,7 @@
             @endforeach
           @else
             <div class="alert alert-info" role="alert">
-              Selecciona un doctor y una fecha para ver los horarios disponibles.
+              Seleccione un doctor y una fecha para ver sus horas disponibles.
             </div>
           @endif
         </div>
