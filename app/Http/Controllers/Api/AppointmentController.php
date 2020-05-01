@@ -51,7 +51,8 @@ class AppointmentController extends Controller
 
     public function store(StoreAppointment $request)
     {
-    	$success = appointment::createForPatient($request,auth()->id());
+    	$patientId = Auth::guard('api')->user();
+    	$success = appointment::createForPatient($request, $patientId);
     	return compact('success')
     }
 }
