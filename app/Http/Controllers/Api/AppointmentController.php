@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Auth;
 
+use App\Http\Requests\StoreAppointment;
 /*-  //Esto es lo que me da 
 		"id": 1,
         "description",
@@ -49,8 +49,9 @@ class AppointmentController extends Controller
     	return $appointments;
     }
 
-    public function store()
+    public function store(StoreAppointment $request)
     {
-
+    	$success = appointment::createForPatient($request,auth()->id());
+    	return compact('success')
     }
 }

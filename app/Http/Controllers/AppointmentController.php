@@ -7,6 +7,7 @@ use App\Specialty;
 use App\Appointment;
 use App\CancelledAppointment;
 use App\Interfaces\ScheduleServiceInterface;
+use App\Http\Requests\StoreAppointment;
 
 use Carbon\Carbon;
 use Validator;
@@ -82,6 +83,7 @@ class AppointmentController extends Controller
     	return view('appointments.create',compact('specialties','doctors', 'intervals'));
     }
 
+    /*- Antes del FORM REQUEST
     public function store(Request $request, ScheduleServiceInterface $scheduleService)
     {
         //Validations in the server
@@ -102,11 +104,12 @@ class AppointmentController extends Controller
             $date = $request->input('scheduled_date');
             $doctorId = $request->input('doctor_id');
             $scheduled_time = $request->input('scheduled_time');
-            if ($date && $doctorId && $scheduled_time) {
-                $start = new Carbon($scheduled_time);     
-            } else {
-                return;
-            }   
+            
+            if (!$date && $doctorId && $scheduled_time) {
+                $start = new Carbon($scheduled_time);
+             }else{ return }
+
+            $start = new Carbon($scheduled_time);
 
             if(!$scheduleService->isAvailableInterval($date, $doctorId, $start)) {
                 $validator->errors()
@@ -119,24 +122,38 @@ class AppointmentController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-    	
+        
         $data = $request->only([
-    		'description' ,
-	    	'specialty_id' ,
-	    	'doctor_id' ,
-	    	'scheduled_date' ,
-	    	'scheduled_time' ,
-	    	'type' 
-    	]);
-        $data['patient_id'] = auth()->id();
+            'description' ,
+            'specialty_id' ,
+            'doctor_id' ,
+            'scheduled_date' ,
+            'scheduled_time' ,
+            'type' 
+        ]);
+        $data['patient_id'] = auth()->id(); //Si queremos q un DR o un Adm genere citas, revisar cual es el rol para asignar ese ID donde corresponda
 
         //right time format
         $carbonTime = Carbon::createFromFormat('g:i A', $data['scheduled_time']);
         $data['scheduled_time'] = $carbonTime->format('H:i:s'); 
         //dd($data->toArray());
-    	appointment::create($data);
+        appointment::create($data);
 
-    	$notification = 'La cita se ha registrado correctamente!';
+        $notification = 'La cita se ha registrado correctamente!';
+        return back()->with(compact('notification'));
+        //return redirect ('/');
+    }-*/
+    
+    public function store(StoreAppointment $request)
+    {
+    	
+        //dd($data->toArray());
+    	$created = appointment::createForPatient($request,auth()->id());
+
+        if ($created)
+    	   $notification = 'La cita se ha registrado correctamente!';
+        else
+           $notification = 'Ocurrio un error al registrar la cita médica.';
     	return back()->with(compact('notification'));
     	//return redirect ('/');
     }
