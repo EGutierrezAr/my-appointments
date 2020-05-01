@@ -148,7 +148,7 @@ class AppointmentController extends Controller
     {
     	
         //dd($data->toArray());
-    	$created = appointment::createForPatient($request,auth()->id());
+    	$created = Appointment::createForPatient($request,auth()->id());
 
         if ($created)
     	   $notification = 'La cita se ha registrado correctamente!';
