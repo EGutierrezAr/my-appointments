@@ -94,7 +94,7 @@ class User extends Authenticatable
         return fcm()->to([
             $this->device_token
             ])->notification([
-                'title' => $request->input('app_name'),
+                'title' => config('app_name'),
                 'body' => $message
             ])->send();
     }
