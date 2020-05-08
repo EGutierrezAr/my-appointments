@@ -59,7 +59,7 @@ class SendNotifications extends Command
             $this->info('Mensaje FCM enviado 24hrs antes al paciente (ID): '.$$appointment->patient_id);
         }
 
-        $this->table($headers,$appointmentsTomorrow);
+        $this->table($headers,$appointmentsTomorrow->toArray());
 
         $appointmentsNextHour = $this->getAppointmentsNextHour($now->copy());
 
@@ -68,7 +68,7 @@ class SendNotifications extends Command
             $this->info('Mensaje FCM enviado 1hr antes al paciente (ID): '.$$appointment->patient_id);
         }
 
-        $this->table($headers,$appointmentsNextHour);
+        $this->table($headers,$appointmentsNextHour->toArray());
     }
 
     private function getAppointments24Hours($now)
@@ -77,7 +77,7 @@ class SendNotifications extends Command
             ->where('scheduled_date', $now->addDay()->toDateString())
             ->where('scheduled_time', '>=', $now->copy()->subMinutes(3)->toTimeString())
             ->where('scheduled_time', '<', $now->copy()->addMinutes(2)->toTimeString())
-            ->get(['id','scheduled_date','scheduled_time','patient_id'])->toArray();
+            ->get(['id','scheduled_date','scheduled_time','patient_id']);
     }
 
     private function getAppointmentsNextHour($now)
@@ -86,6 +86,6 @@ class SendNotifications extends Command
             ->where('scheduled_date', $now->addHour()->toDateString())
             ->where('scheduled_time', '>=', $now->copy()->subMinutes(3)->toTimeString())
             ->where('scheduled_time', '<', $now->copy()->addMinutes(2)->toTimeString())
-            ->get(['id','scheduled_date','scheduled_time','patient_id'])->toArray();
+            ->get(['id','scheduled_date','scheduled_time','patient_id']);
     }
 }
