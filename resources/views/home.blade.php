@@ -25,7 +25,7 @@
       <div class="card-header bg-transparent">
         <div class="row align-items-center">
           <div class="col">
-            <h2 class="text-uppercase text-light ls-1 mb-1">Notificación General</h6>
+            <h2 class="text-uppercase ls-1 mb-1">Notificación General</h6>
             <h4 class="text-light mb-0">Enviar a todos los usuarios</h2>
           </div>
         </div>
@@ -58,7 +58,7 @@
       <div class="card-header bg-transparent">
         <div class="row align-items-center">
           <div class="col">
-            <h6 class="text-uppercase text-muted ls-1 mb-1">Total del dias</h6>
+            <h6 class="text-uppercase text-muted ls-1 mb-1">Total del citas</h6>
             <h2 class="mb-0">Días de la semana</h2>
           </div>
         </div>
@@ -73,4 +73,11 @@
   </div>
 @endif  
 </div>
+@endsection
+
+@section('scripts')
+<script>
+  const appointmentsByDay = @json($appointmentsByDay) 
+</script>
+<script src="{{ asset('js/charts/home.js ') }}"></script>
 @endsection
