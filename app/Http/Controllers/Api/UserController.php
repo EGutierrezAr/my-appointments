@@ -20,6 +20,8 @@ class UserController extends Controller
     	$user->name = $request->name;
     	$user->phone = $request->phone;
     	//$user->address = $request->address;
-    	$user->save(); 
+    	$user->save();
+
+    	JwtAuth::clearCache($user); //Limpiar cache solo si se ha cambiado, por que cuanso se consulta un usuario se conulta de la cache
     }
 }
