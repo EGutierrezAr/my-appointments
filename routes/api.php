@@ -9,6 +9,7 @@ Route::post('/register', 'AuthController@register');
 Route::get('/specialties', 'SpecialtyController@index');
 Route::get('/specialties/{specialty}/doctors', 'SpecialtyController@doctors');
 Route::get('/schedule/hours', 'ScheduleController@hours');
+Route::get('/schedule/days', 'ScheduleController@days');
 
 Route::middleware('auth:api')->group(function() {
 

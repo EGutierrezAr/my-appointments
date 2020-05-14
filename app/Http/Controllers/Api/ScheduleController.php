@@ -27,6 +27,30 @@ class ScheduleController extends Controller
         return $scheduleService->getAvailableIntervals($date, $doctorId);
     }
 
+    public function days(Request $request, ScheduleServiceInterface $scheduleService){
+
+        $rules =[
+            'doctor_id'=> 'required|exists:users,id'
+        ];
+
+        $request->validate($rules);
+        $doctorId = $request->input('doctor_id');  
+
+
+        $start_date = Carbon::today(); 
+        $end_date = Carbon::today()->addDays(20);
+
+        $dates = [];
+        $datesAvailable = [];
+        for($date = $start_date; $date->lte($end_date); $date->addDay()) { 
+            $datesAvailable = $scheduleService->getAvailableIntervals($date->format('Y-m-d'), $doctorId);
+            if (!empty($datesAvailable['morning']) && !empty($datesAvailable['afternoon']))
+                $dates[] = $date->format('d-m-Y'); 
+        } 
+        return $dates; 
+    }
+
+
     private function getIntervals($start, $end){
         $start = new Carbon($start);
         $end = new Carbon($end);
