@@ -41,13 +41,16 @@ class ScheduleController extends Controller
         $end_date = Carbon::today()->addDays(20);
 
         $dates = [];
-        $datesAvailable = [];
+        $dates1 = [];
+        $datesDoctor = [];
         for($date = $start_date; $date->lte($end_date); $date->addDay()) { 
             $datesAvailable = $scheduleService->getAvailableIntervals($date->format('Y-m-d'), $doctorId);
             if (!empty($datesAvailable['morning']) && !empty($datesAvailable['afternoon']))
                 $dates[] = $date->format('d-m-Y'); 
         } 
-        return $dates; 
+
+        $datesDoctor['days'] = $dates;
+        return $datesDoctor; 
     }
 
 
