@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
+//Route::post('/userPsw', 'AuthController@updatePassword');
 
 //Public resources (JSON)
 Route::get('/specialties', 'SpecialtyController@index');

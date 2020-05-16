@@ -19,6 +19,8 @@ class UserController extends Controller
     {
     	$user = Auth::guard('api')->user();
     	$user->name = $request->name;
+        $this->info('Phone: '.$phone);
+        $this->info('psw: '.$phone);
     	$user->phone = $request->phone;
     	//$user->address = $request->address;
     	$user->save();
