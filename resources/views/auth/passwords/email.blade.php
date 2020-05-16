@@ -12,8 +12,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-
+                    @else
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
@@ -34,11 +33,12 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Enviar reseteo de contrasaeña') }}
+                                    {{ __('Enviar reseteo de contraseña') }}
                                 </button>
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>
