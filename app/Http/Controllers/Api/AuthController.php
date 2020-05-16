@@ -58,42 +58,4 @@ class AuthController extends Controller
 	    return compact('success','user','jwt');
     }
 
-    /*-public function updatePassword (Request $request)
-    {
-
-       
-
-        if (User::where('email', $request->email)->exists()) {
-
-
-                    $rules = [
-                        //'name'=>'required|min:3',
-                        'email'=>'required|email',
-                        //'cedula'=>'nullable|digits:8',
-                        //'address'=>'nullable|min:5',
-                        //'phone'=>'nullable|min:6'
-                    ]; 
-                    $this->validate($request, $rules);
-
-
-
-            $id = User::select('id')->where('email', $request->email)->first();
-            $user = User::patients()->findOrFail($id);
-
-                             $data=$request->only('email');        
-            $password = $request->password;
-            
-            if ($password)
-                $data ['password'] = bcrypt ($password);
-            
-            $user->fill($data);
-            $user->save($data);
-
-            $success = $user->name;
-        } else {
-            $success = false;
-        }
-        return compact('success');
-    }-*/
-
 }

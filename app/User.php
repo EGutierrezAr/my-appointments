@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
+use App\Notifications\ResetPasswordNotification;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -100,5 +102,16 @@ class User extends Authenticatable
                 'title' => config('app_name'),
                 'body' => $message
             ])->send();
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
