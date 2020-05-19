@@ -23,13 +23,13 @@
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="pill" href="#confirmed-appointments" role="tab" aria-selected="true">Mis próximas citas</a>
+      <a class="nav-link"  data-toggle="pill" href="#confirmed-appointments" onclick="Tab1()" role="tab" >Mis próximas citas</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="pill" href="#pending-appointments" role="tab" aria-selected="false">Citas por confirmar</a>
+      <a class="nav-link" data-toggle="pill" href="#pending-appointments" onclick="Tab2()" role="tab" >Citas por confirmar</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="pill" href="#old-appointments" role="tab" aria-selected="false">Historial de citas</a>
+      <a class="nav-link" data-toggle="pill" href="#old-appointments" onclick="Tab3()" role="tab">Historial de citas</a>
     </li>
   </ul>
 </div>
@@ -47,4 +47,59 @@
 </div>
 @endsection
 
+<script>
 
+
+function Tab1(){
+
+  var ca= "http://"+window.location.hostname+"/appointments?#confirmed-appointments"
+  window.location.replace(ca);
+}
+
+function Tab2(){
+   var pa= "http://"+window.location.hostname+"/appointments?#pending-appointments"
+   window.location.replace(pa);
+}
+
+function Tab3(){
+   var oa= "http://"+window.location.hostname+"/appointments?#old-appointments"
+   window.location.replace(oa);
+}
+
+window.onload = function() {
+    var a= getUrlVars()["tab"];
+    //alert(a)
+    $('#pills-tab a[href="#'+a+'"]').tab('show')
+};
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+
+function removeParam(parameter)
+{
+  var url=document.location.href;
+  var urlparts= url.split('?');
+
+ if (urlparts.length>=2)
+ {
+  var urlBase=urlparts.shift(); 
+  var queryString=urlparts.join("?"); 
+
+  var prefix = encodeURIComponent(parameter)+'=';
+  var pars = queryString.split(/[&;]/g);
+  for (var i= pars.length; i-->0;)               
+      if (pars[i].lastIndexOf(prefix, 0)!==-1)   
+          pars.splice(i, 1);
+  url = urlBase+'?'+pars.join('&');
+  window.history.pushState('',document.title,url); // added this line to push the new url directly to url bar .
+
+}
+return url;
+}
+</script>

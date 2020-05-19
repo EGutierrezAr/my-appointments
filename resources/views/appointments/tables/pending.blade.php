@@ -74,5 +74,5 @@
 </div>
 
 <div class="card-body">
-  {{ $pendingAppointments->links() }} 
+  {{ $pendingAppointments->fragment('&tab='.'pending-appointments')->links() }} 
 </div>

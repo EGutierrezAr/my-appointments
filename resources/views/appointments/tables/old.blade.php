@@ -36,6 +36,5 @@
 </div>
 
 <div class="card-body">
-  {{ $oldAppointments->links('')}}
+  {{ $oldAppointments->fragment('&tab='.'old-appointments')->links() }} 
 </div>
-

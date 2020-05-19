@@ -61,5 +61,5 @@
 </div>
 
 <div class="card-body">
-  {{ $confirmedAppointments->links() }} 
+  {{ $confirmedAppointments->fragment('&tab='.'confirmed-appointments')->links() }} 
 </div>
