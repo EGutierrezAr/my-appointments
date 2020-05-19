@@ -12,6 +12,9 @@ use App\Http\Requests\StoreAppointment;
 use Carbon\Carbon;
 use Validator;
 
+
+use Illuminate\Console\Command;
+
 class AppointmentController extends Controller
 {
     public function index()

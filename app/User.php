@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Notifications\ResetPasswordNotification;
 
+
+use Illuminate\Console\Command;
+
 class User extends Authenticatable
 {
     use Notifiable;
