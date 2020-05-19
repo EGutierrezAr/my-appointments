@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Notifications\ResetPasswordNotification;
 
-
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -96,12 +95,12 @@ class User extends Authenticatable
     }
 
     public function sendFCM($message){
-        $this->info('Voy 1.1');
+        Log::info('Voy 1.1');
 
         if (!$this->device_token)
             return;
         
-        $this->info('Voy 1.2');
+        Log::info('Voy 1.2');
 
         return fcm()->to([
             $this->device_token
@@ -110,7 +109,7 @@ class User extends Authenticatable
                 'body' => $message
             ])->send();
 
-            $this->info('Voy 1.3');
+            Log::info('Voy 1.3');
     }
 
     /**

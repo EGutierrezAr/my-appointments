@@ -12,8 +12,7 @@ use App\Http\Requests\StoreAppointment;
 use Carbon\Carbon;
 use Validator;
 
-
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
 {
@@ -200,12 +199,12 @@ class AppointmentController extends Controller
         $appointment->status = 'Confirmada';
         $saved = $appointment->save();
 
-        $this->info('Voy 1');
+        Log::info('Voy 1');
 
         if ($saved)
             $appointment->patient->sendFCM('Su cita ha sido confirmada!');
 
-        $this->info('Voy 2');
+        Log::info('Voy 2');
 
         $notification = 'La cita se ha confirmado correctamente.';
         return redirect('/appointments')->with(compact('notification'));
