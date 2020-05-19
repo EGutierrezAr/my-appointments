@@ -93,8 +93,12 @@ class User extends Authenticatable
     }
 
     public function sendFCM($message){
+        $this->info('Voy 1.1');
+
         if (!$this->device_token)
             return;
+        
+        $this->info('Voy 1.2');
 
         return fcm()->to([
             $this->device_token
@@ -102,6 +106,8 @@ class User extends Authenticatable
                 'title' => config('app_name'),
                 'body' => $message
             ])->send();
+
+            $this->info('Voy 1.3');
     }
 
     /**
