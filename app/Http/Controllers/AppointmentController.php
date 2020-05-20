@@ -12,8 +12,6 @@ use App\Http\Requests\StoreAppointment;
 use Carbon\Carbon;
 use Validator;
 
-use Illuminate\Support\Facades\Log;
-
 class AppointmentController extends Controller
 {
     public function index()
@@ -198,7 +196,6 @@ class AppointmentController extends Controller
     {
         $appointment->status = 'Confirmada';
         
-        Log::info('Voy 1');
         /*-$saved = $appointment->save();
 
         /*-if ($saved)
@@ -206,7 +203,7 @@ class AppointmentController extends Controller
         -*/
         $notification = 'La cita se ha confirmado correctamente.';
 
-        Log::info('Voy 2');
+
         return redirect('/appointments')->with(compact('notification'));
     }
 }
