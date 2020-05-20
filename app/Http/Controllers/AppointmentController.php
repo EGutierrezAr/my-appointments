@@ -197,16 +197,16 @@ class AppointmentController extends Controller
     public function postConfirm(Appointment $appointment)
     {
         $appointment->status = 'Confirmada';
-        $saved = $appointment->save();
-
+        
         Log::info('Voy 1');
+        /*-$saved = $appointment->save();
 
-        if ($saved)
+        /*-if ($saved)
             $appointment->patient->sendFCM('Su cita ha sido confirmada!');
+        -*/
+        $notification = 'La cita se ha confirmado correctamente.';
 
         Log::info('Voy 2');
-
-        $notification = 'La cita se ha confirmado correctamente.';
         return redirect('/appointments')->with(compact('notification'));
     }
 }
