@@ -35,6 +35,7 @@ class AppointmentController extends Controller
     			$query -> select('id','name');
     		}
     	]) 
+        ->orderBy('id', 'DESC')
     	->get([ //Los campos que realmente necesito de user
 			"id",
 	        "description",
