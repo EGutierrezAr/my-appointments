@@ -198,9 +198,9 @@ class AppointmentController extends Controller
         
         /*-$saved = $appointment->save();
 
-        /*-if ($saved)
+        /*-if ($saved)-*/
             $appointment->patient->sendFCM('Su cita ha sido confirmada!');
-        -*/
+        -
         $notification = 'La cita se ha confirmado correctamente.';
 
 
