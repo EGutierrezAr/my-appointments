@@ -195,7 +195,7 @@ class AppointmentController extends Controller
     public function postConfirm(Appointment $appointment)
     {
         $appointment->status = 'Confirmada';
-        dgdfgdfgd
+        info('This is some useful information.');
         $saved = $appointment->save();
 
         if ($saved)
