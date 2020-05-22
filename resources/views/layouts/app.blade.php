@@ -48,7 +48,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li-->
                             @endif
-                            <li class="nav-item">
+                            <!--li class="nav-item">
                               <a class="nav-link nav-link-icon" href="{{ route('register') }}">
                                 <i class="ni ni-circle-08"></i>
                                 <span class="nav-link-inner--text">Registro</span>
@@ -59,7 +59,7 @@
                                 <i class="ni ni-key-25"></i>
                                 <span class="nav-link-inner--text">Ingresar</span>
                               </a>
-                            </li>
+                            </li-->
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
