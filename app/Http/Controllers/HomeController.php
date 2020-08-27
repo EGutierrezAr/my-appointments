@@ -56,4 +56,9 @@ class HomeController extends Controller
         
         return view('home', compact('appointmentsByDay'));
     }
+
+    public function diar()
+    {
+        return view('diar');
+    }
 }

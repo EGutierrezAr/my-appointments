@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specialty;
 use App\Appointment;
+use App\User;
 use App\CancelledAppointment;
 use App\Interfaces\ScheduleServiceInterface;
 use App\Http\Requests\StoreAppointment;
 
 use Carbon\Carbon;
 use Validator;
+
+use App\Exports\AppointmentExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageReceived;
 
 class AppointmentController extends Controller
 {
@@ -198,10 +205,21 @@ class AppointmentController extends Controller
         info('This is some useful information.');
         $saved = $appointment->save();
 
+
+        $userName=User::find($appointment->patient_id)->name;
+        $doctorName=User::find($appointment->doctor_id)->name;
+        $subject = 'Su cita ha sido confirmada!';        
+        Mail::to('eeggaa@gmail.com')->send(new MessageReceived($subject,$userName,$doctorName,$appointment));
+        
         if ($saved)
             $appointment->patient->sendFCM('Su cita ha sido confirmada!');
     
         $notification = 'La cita se ha confirmado correctamente.';
         return redirect('/appointments')->with(compact('notification'));
+    }
+
+    public function export() 
+    {
+        return Excel::download(new AppointmentExport, 'appointment.xlsx');
     }
 }

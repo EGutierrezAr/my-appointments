@@ -20,6 +20,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home'); //{{ rounte('home')}}
 
+Route::get('/appointments/export', 'AppointmentController@export');
+
+Route::get('/diar', 'HomeController@diar');
+
 
 Route::middleware(['auth','admin'])->namespace('Admin')->group(function() {
 	//Speciality

@@ -35,4 +35,15 @@
       </a>
     </li>
   </ul>
+    {{-- Divider --}}
+  <hr class="my-3">
+  {{-- Heading --}}
+  {{-- Navigation --}}
+  <ul class="navbar-nav mb-md-3">
+    <li class="nav-item">
+      <a class="nav-link" href=" {{  url('/appointments/export')  }} ">
+        <i class="ni ni-single-copy-04 text-brown"></i> Reporte de citas
+      </a>
+    </li>
+  </ul>
  @endif
